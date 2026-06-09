@@ -1,0 +1,19 @@
+:host {
+    display: inline-block;
+    --icon-size: 24px;
+
+    --icon-menu: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='3' y='5' width='18' height='2' rx='1' fill='black'/><rect x='3' y='11' width='18' height='2' rx='1' fill='black'/><rect x='3' y='17' width='18' height='2' rx='1' fill='black'/></svg>");
+}
+
+.icon {
+    display: inline-block;
+    inline-size: var(--icon-size);
+    block-size: var(--icon-size);
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+}

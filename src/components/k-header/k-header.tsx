@@ -28,7 +28,6 @@ export class KHeader {
 
           <a class="logo" href="./" aria-label={this.logoAriaLabel}>
             <span class="logo-mask" />
-            123
           </a>
 
           <a class="logo" href="./" aria-label={this.logoAriaLabel}>

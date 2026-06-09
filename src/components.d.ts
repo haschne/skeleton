@@ -8,6 +8,20 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { TextVariant } from "./components/k-text/k-text";
 export { TextVariant } from "./components/k-text/k-text";
 export namespace Components {
+    interface KButton {
+        /**
+          * @default 'menu'
+         */
+        "icon": string;
+        /**
+          * @default 'Button'
+         */
+        "label": string;
+        /**
+          * @default 'button'
+         */
+        "type": 'button' | 'submit';
+    }
     /**
      * Header component mirroring a real design-system header:
      * shadow: true, named slots (start / end), an inner logo with inline SVG.
@@ -17,6 +31,13 @@ export namespace Components {
           * @default 'Home'
          */
         "logoAriaLabel": string;
+    }
+    interface KIcon {
+        "label"?: string;
+        /**
+          * @default 'menu'
+         */
+        "name": string;
     }
     /**
      * Minimal text component mirroring a real Stencil design-system primitive:
@@ -30,6 +51,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLKButtonElement extends Components.KButton, HTMLStencilElement {
+    }
+    var HTMLKButtonElement: {
+        prototype: HTMLKButtonElement;
+        new (): HTMLKButtonElement;
+    };
     /**
      * Header component mirroring a real design-system header:
      * shadow: true, named slots (start / end), an inner logo with inline SVG.
@@ -39,6 +66,12 @@ declare global {
     var HTMLKHeaderElement: {
         prototype: HTMLKHeaderElement;
         new (): HTMLKHeaderElement;
+    };
+    interface HTMLKIconElement extends Components.KIcon, HTMLStencilElement {
+    }
+    var HTMLKIconElement: {
+        prototype: HTMLKIconElement;
+        new (): HTMLKIconElement;
     };
     /**
      * Minimal text component mirroring a real Stencil design-system primitive:
@@ -51,11 +84,27 @@ declare global {
         new (): HTMLKTextElement;
     };
     interface HTMLElementTagNameMap {
+        "k-button": HTMLKButtonElement;
         "k-header": HTMLKHeaderElement;
+        "k-icon": HTMLKIconElement;
         "k-text": HTMLKTextElement;
     }
 }
 declare namespace LocalJSX {
+    interface KButton {
+        /**
+          * @default 'menu'
+         */
+        "icon"?: string;
+        /**
+          * @default 'Button'
+         */
+        "label"?: string;
+        /**
+          * @default 'button'
+         */
+        "type"?: 'button' | 'submit';
+    }
     /**
      * Header component mirroring a real design-system header:
      * shadow: true, named slots (start / end), an inner logo with inline SVG.
@@ -65,6 +114,13 @@ declare namespace LocalJSX {
           * @default 'Home'
          */
         "logoAriaLabel"?: string;
+    }
+    interface KIcon {
+        "label"?: string;
+        /**
+          * @default 'menu'
+         */
+        "name"?: string;
     }
     /**
      * Minimal text component mirroring a real Stencil design-system primitive:
@@ -77,15 +133,26 @@ declare namespace LocalJSX {
         "variant"?: TextVariant;
     }
 
+    interface KButtonAttributes {
+        "label": string;
+        "icon": string;
+        "type": 'button' | 'submit';
+    }
     interface KHeaderAttributes {
         "logoAriaLabel": string;
+    }
+    interface KIconAttributes {
+        "name": string;
+        "label": string;
     }
     interface KTextAttributes {
         "variant": TextVariant;
     }
 
     interface IntrinsicElements {
+        "k-button": Omit<KButton, keyof KButtonAttributes> & { [K in keyof KButton & keyof KButtonAttributes]?: KButton[K] } & { [K in keyof KButton & keyof KButtonAttributes as `attr:${K}`]?: KButtonAttributes[K] } & { [K in keyof KButton & keyof KButtonAttributes as `prop:${K}`]?: KButton[K] };
         "k-header": Omit<KHeader, keyof KHeaderAttributes> & { [K in keyof KHeader & keyof KHeaderAttributes]?: KHeader[K] } & { [K in keyof KHeader & keyof KHeaderAttributes as `attr:${K}`]?: KHeaderAttributes[K] } & { [K in keyof KHeader & keyof KHeaderAttributes as `prop:${K}`]?: KHeader[K] };
+        "k-icon": Omit<KIcon, keyof KIconAttributes> & { [K in keyof KIcon & keyof KIconAttributes]?: KIcon[K] } & { [K in keyof KIcon & keyof KIconAttributes as `attr:${K}`]?: KIconAttributes[K] } & { [K in keyof KIcon & keyof KIconAttributes as `prop:${K}`]?: KIcon[K] };
         "k-text": Omit<KText, keyof KTextAttributes> & { [K in keyof KText & keyof KTextAttributes]?: KText[K] } & { [K in keyof KText & keyof KTextAttributes as `attr:${K}`]?: KTextAttributes[K] } & { [K in keyof KText & keyof KTextAttributes as `prop:${K}`]?: KText[K] };
     }
 }
@@ -93,11 +160,13 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "k-button": LocalJSX.IntrinsicElements["k-button"] & JSXBase.HTMLAttributes<HTMLKButtonElement>;
             /**
              * Header component mirroring a real design-system header:
              * shadow: true, named slots (start / end), an inner logo with inline SVG.
              */
             "k-header": LocalJSX.IntrinsicElements["k-header"] & JSXBase.HTMLAttributes<HTMLKHeaderElement>;
+            "k-icon": LocalJSX.IntrinsicElements["k-icon"] & JSXBase.HTMLAttributes<HTMLKIconElement>;
             /**
              * Minimal text component mirroring a real Stencil design-system primitive:
              * shadow: true, a styled <p>, and a default <slot>.
