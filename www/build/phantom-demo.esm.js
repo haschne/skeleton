@@ -1,0 +1,1 @@
+import{p as a,b as e}from"./p-8vzen93Z.js";export{s as setNonce}from"./p-8vzen93Z.js";import{g as o}from"./p-DQuL1Twl.js";(()=>{const e=import.meta.url,o={};return""!==e&&(o.resourcesUrl=new URL(".",e).href),a(o)})().then((async a=>(await o(),e([["p-e6dfde0d",[[257,"k-header",{logoAriaLabel:[1,"logo-aria-label"]}],[257,"k-text",{variant:[1]}]]]],a))));

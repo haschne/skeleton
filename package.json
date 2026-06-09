@@ -1,0 +1,16 @@
+{
+  "name": "phantom-ui-stencil-demo",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "serve www -l 8080",
+    "rebuild": "stencil build"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  },
+  "devDependencies": {
+    "@aejkatappaja/phantom-ui": "beta",
+    "@stencil/core": "^4.43.5"
+  }
+}
